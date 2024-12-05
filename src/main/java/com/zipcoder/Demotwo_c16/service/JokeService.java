@@ -24,4 +24,34 @@ public class JokeService {
     public Iterable<Joke> getAllJokes(){
          return jokeRepository.findAll();
     }
+
+    //Update a Joke
+  public Joke updateJoke(Long id, Joke joke){
+      for(Joke j : getAllJokes() ){
+          if(j.getId().equals(id)){
+              j.setValue(joke.getValue());
+              return jokeRepository.save(j);
+          }
+      }
+      return null;
+  }
+
+    //Get a single joke
+    public Joke getJokeById(Long id){
+        for (Joke j : getAllJokes()){
+            if (j.getId().equals(id)){
+                return j;
+            }
+        }
+        return null;
+    }
+
+
+
+
+    //Delete a Joke
+    public void deleteJokeById(Long id){
+        jokeRepository.deleteById(id);
+    }
+
 }
